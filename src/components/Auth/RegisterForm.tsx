@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { RegisterSchemaType } from "@/lib/type";
 import { registerSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,7 +13,7 @@ import { Input } from "../shadcnui/input";
 import { Spinner } from "../shadcnui/spinner";
 
 const RegisterForm = () => {
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const {
     handleSubmit,
@@ -32,19 +33,31 @@ const RegisterForm = () => {
     mode: "onSubmit",
   });
 
-  const submitRegisterData = async (rData: RegisterSchemaType) => {
-    await new Promise<void>((r) => setTimeout(r, 1800)); // test spinner
+  const submitRegisterData = async ({
+    name,
+    emailAddress,
+    confirmPassword,
+  }: RegisterSchemaType) => {
+    try {
+      const { error } = await authClient.signUp.email({
+        name,
+        email: emailAddress,
+        password: confirmPassword,
+      });
 
-    // test the workflow of user register form
-    if (!rData) {
-      console.error("User registration failed!");
-      toast.error("User registration failed!");
-    } else {
-      console.log(rData);
-      console.log("User registered successfully!");
-      toast.success("User registered successfully!");
-      reset();
-      push("/login");
+      if (error) {
+        console.error(error);
+        toast.error("Registration failed. Please try again.");
+      } else {
+        toast.success("Registration successful!");
+
+        reset();
+
+        replace("/login");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Registration failed. Please try again.");
     }
   };
 
