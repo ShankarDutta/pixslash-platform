@@ -11,7 +11,7 @@ type OAuthButtonProps = {
 };
 
 const OAuthButton = ({ label, socialProviders }: OAuthButtonProps) => {
-  const socialLoginHandeler = async () => {
+  const socialLoginHandler = async () => {
     await authClient.signIn.social({
       provider: socialProviders,
       callbackURL: "/contribution",
@@ -23,7 +23,7 @@ const OAuthButton = ({ label, socialProviders }: OAuthButtonProps) => {
       type="button"
       className="cursor-pointer"
       variant="outline"
-      onClick={socialLoginHandeler}>
+      onClick={socialLoginHandler}>
       {socialProviders === "google" ?
         <>
           {/* google icon svg  */}
