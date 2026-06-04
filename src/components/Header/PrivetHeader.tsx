@@ -1,7 +1,8 @@
 import Link from "next/link";
+import LogoutButton from "../Buttons/LogoutButton";
 import ThemeToggleButton from "../Buttons/ThemeToggleButton";
 
-const Header = () => {
+const PrivetHeader = () => {
   return (
     <header
       className="sticky top-0 z-50 border-b shadow"
@@ -16,8 +17,7 @@ const Header = () => {
         </Link>
 
         <nav className="flex items-center gap-4">
-          <Link href={"/login"}>Login</Link>
-          <Link href={"/register"}>Register</Link>
+          <LogoutButton />
 
           <ThemeToggleButton />
         </nav>
@@ -26,4 +26,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default PrivetHeader;
