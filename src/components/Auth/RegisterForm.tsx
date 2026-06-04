@@ -36,13 +36,13 @@ const RegisterForm = () => {
   const submitRegisterData = async ({
     name,
     emailAddress,
-    confirmPassword,
+    password,
   }: RegisterSchemaType) => {
     try {
       const { error } = await authClient.signUp.email({
         name,
         email: emailAddress,
-        password: confirmPassword,
+        password,
       });
 
       if (error) {

@@ -9,7 +9,9 @@ export const registerSchema = z
       .max(32, { error: "Name must not exceed 32 characters" }),
     emailAddress: z
       .email({ error: "Please enter a valid  email address." })
+      .trim()
       .toLowerCase(),
+
     password: z
       .string()
       .min(8, "Passsword must be at least 8 characters long")
@@ -24,7 +26,10 @@ export const registerSchema = z
   });
 
 export const loginSchema = z.object({
-  emailAddress: z.email({ error: "Please provide a valid email address" }),
+  emailAddress: z
+    .email({ error: "Please provide a valid email address" })
+    .trim()
+    .toLowerCase(),
   password: z
     .string()
     .min(8, "Passsword must be at least 8 characters long")
