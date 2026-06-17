@@ -30,7 +30,7 @@ const page = async () => {
     },
   });
 
-  if (!getImages) {
+  if (getImages.length === 0) {
     return <div>No wallpapers found</div>;
   }
 

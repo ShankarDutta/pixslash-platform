@@ -20,9 +20,9 @@ const WallpaperCard = ({ info }: WallpaperCardProps) => {
         <Image
           src={info.imageUrl}
           alt={`image - ${info.title}`}
-          width={Number(info.width)}
-          height={Number(info.height)}
-          loading="eager"
+          width={info.width ?? 1200}
+          height={info.height ?? 800}
+          loading="lazy"
           className="h-auto w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
 
@@ -68,7 +68,14 @@ const WallpaperCard = ({ info }: WallpaperCardProps) => {
               {/* User */}
               <div className="flex items-center gap-2 py-2">
                 <Avatar>
-                  <AvatarImage src={info.user?.image ?? undefined} />
+                  <AvatarImage
+                    src={info.user?.image ?? undefined}
+                    alt={
+                      info.user?.name ?
+                        `${info.user?.name} avatar`
+                      : "User avatar"
+                    }
+                  />
                   <AvatarFallback>
                     {info.user?.name.trim() ?
                       info.user.name

@@ -19,6 +19,7 @@ const UserAvatar = ({ name, image }: UserAvatarProps) => {
         src={image ?? undefined}
         height={24}
         width={24}
+        alt={name ? `${name} avatar` : "User avatar"}
       />
       <AvatarFallback>{initials}</AvatarFallback>
     </Avatar>
