@@ -46,7 +46,7 @@ type WallpaperDetailsCardProps = {
 };
 
 const WallpaperDetailsCard = ({ getDetails }: WallpaperDetailsCardProps) => {
-  const formattedFileSize = formatFileSize(getDetails.fileSize || 1024);
+  const formattedFileSize = formatFileSize(getDetails.fileSize ?? 1024);
   const { data, isPending } = authClient.useSession();
   const user = data?.user;
   const [open, setOpen] = useState(false);
