@@ -36,5 +36,5 @@ Ensure you have the following installed on your machine:
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/ShankarDutta/pixslash-platform.git](https://github.com/ShankarDutta/pixslash-platform.git)
+git clone https://github.com/ShankarDutta/pixslash-platform.git
 cd pixslash-platform
